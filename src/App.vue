@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <mt-header fixed :title="$route.meta.title"> </mt-header>
+    <router-view></router-view>
+    <tabbar></tabbar>
   </div>
 </template>
+
+<script>
+import Tabbar from "@/views/components/Tabbar";
+export default {
+  name: "App",
+  components: {
+    Tabbar,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
