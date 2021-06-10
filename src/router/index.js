@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Login from '@/views/components/Login'
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,14 @@ const routes = [
     component: () => import("@/views/pages/User.vue"),
     meta: {
       title: "用户",
+    },
+  },
+  {
+    path: "/Login",
+    name: "login",
+    component: Login,
+    meta: {
+      title: "用户登录",
     },
   }
 ];
