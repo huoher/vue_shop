@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <mt-header fixed :title="$route.meta.title"> </mt-header>
-    <router-view></router-view>
+    <mt-header :title="$route.meta.title" fixed>
+      <span slot="left" @click="goBack" v-show="showBack">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
+    <div>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
+    </div>
     <tabbar></tabbar>
   </div>
 </template>
 
 <script>
 import Tabbar from "@/views/components/Tabbar";
+
 export default {
   name: "App",
   components: {
-    Tabbar,
+    Tabbar
   },
+  data() {
+    return {
+      showBack: false
+    };
+  },
+  created() {
+    this.showBack = this.$route.path !== '/home'
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    }
+  }
 };
 </script>
 
@@ -23,6 +45,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
 }
 
 #nav {
@@ -36,5 +60,21 @@ export default {
       color: #42b983;
     }
   }
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
 }
 </style>
