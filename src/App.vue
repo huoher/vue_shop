@@ -28,11 +28,16 @@ export default {
     };
   },
   created() {
-    this.showBack = this.$route.path !== '/home'
+    this.showBack = this.$route.path !== "/home";
+  },
+  watch: {
+    "$route.path"(newVal) {
+      this.showBack = newVal !== '/home'
+    }
   },
   methods: {
     goBack() {
-      this.$router.go(-1)
+      this.$router.go(-1);
     }
   }
 };
