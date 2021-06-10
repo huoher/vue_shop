@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <mt-header :title="$route.meta.title" fixed>
+    <mt-header :title="$route.meta.title" style="position: sticky; top: 0">
       <span slot="left" @click="goBack" v-show="showBack">
         <mt-button icon="back">返回</mt-button>
       </span>
@@ -20,26 +20,27 @@ import Tabbar from "@/views/components/Tabbar";
 export default {
   name: "App",
   components: {
-    Tabbar
+    Tabbar,
   },
   data() {
     return {
-      showBack: false
+      showBack: false,
     };
   },
   created() {
     this.showBack = this.$route.path !== "/home";
   },
+  mounted() {},
   watch: {
     "$route.path"(newVal) {
-      this.showBack = newVal !== '/home'
-    }
+      this.showBack = newVal !== "/home";
+    },
   },
   methods: {
     goBack() {
       this.$router.go(-1);
-    }
-  }
+    },
+  },
 };
 </script>
 
