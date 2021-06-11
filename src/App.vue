@@ -7,7 +7,7 @@
     </mt-header>
     <div>
       <transition name="fade">
-        <router-view></router-view>
+        <router-view v-if="isReloadAlive"></router-view>
       </transition>
     </div>
     <tabbar></tabbar>
@@ -20,17 +20,24 @@ import Tabbar from "@/views/components/Tabbar";
 export default {
   name: "App",
   components: {
-    Tabbar,
+    Tabbar
+  },
+  provide() {
+    return {
+      reload: this.reload
+    };
   },
   data() {
     return {
       showBack: false,
+      isReloadAlive: true
     };
   },
   created() {
     this.showBack = this.$route.path !== "/home";
   },
-  mounted() {},
+  mounted() {
+  },
   watch: {
     "$route.path"(newVal) {
       this.showBack = newVal !== "/home";
@@ -40,7 +47,13 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-  },
+    reload() {
+      this.isReloadAlive = false;
+      this.$nextTick(() => {
+        this.isReloadAlive = true;
+      });
+    },
+  }
 };
 </script>
 
