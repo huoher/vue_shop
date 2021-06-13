@@ -20,24 +20,23 @@ import Tabbar from "@/views/components/Tabbar";
 export default {
   name: "App",
   components: {
-    Tabbar
+    Tabbar,
   },
   provide() {
     return {
-      reload: this.reload
+      reload: this.reload,
     };
   },
   data() {
     return {
       showBack: false,
-      isReloadAlive: true
+      isReloadAlive: true,
     };
   },
   created() {
     this.showBack = this.$route.path !== "/home";
   },
-  mounted() {
-  },
+  mounted() {},
   watch: {
     "$route.path"(newVal) {
       this.showBack = newVal !== "/home";
@@ -53,7 +52,7 @@ export default {
         this.isReloadAlive = true;
       });
     },
-  }
+  },
 };
 </script>
 
