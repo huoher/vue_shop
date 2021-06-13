@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Login from '@/views/components/Login'
+import Login from "@/views/components/Login";
+import ShippingAddress from "@/views/components/ShippingAddress";
 
 Vue.use(VueRouter);
 
@@ -8,17 +9,17 @@ const routes = [
   {
     path: "/",
     redirect: "/home",
-    meta:{
-      title: "首页"
-    }
+    meta: {
+      title: "首页",
+    },
   },
   {
     path: "/home",
     name: "home",
     component: () => import("@/views/pages/Home.vue"),
-    meta:{
-      title: "首页"
-    }
+    meta: {
+      title: "首页",
+    },
   },
   {
     path: "/Shopcart",
@@ -51,7 +52,15 @@ const routes = [
     meta: {
       title: "用户登录",
     },
-  }
+  },
+  {
+    path: "/ShippingAddress",
+    name: "shippingAddress",
+    component: ShippingAddress,
+    meta: {
+      title: "用户登录",
+    },
+  },
 ];
 
 const router = new VueRouter({

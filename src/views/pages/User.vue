@@ -1,6 +1,10 @@
 <template>
   <div id="User">
-    <router-link :to="{ name: 'login' }" class="head-con" v-if="!$store.state.hasLogin">
+    <router-link
+      :to="{ name: 'login' }"
+      class="head-con"
+      v-if="!$store.state.hasLogin"
+    >
       <div class="avatar">
         <img :src="avatar" />
       </div>
@@ -12,23 +16,31 @@
       </div>
       <p>{{ $store.state.userInfo.username }}</p>
     </div>
-    <mt-button type="danger" @click="loginOut" v-if="$store.state.hasLogin">退出登录</mt-button>
+    <div v-if="$store.state.hasLogin">
+      <mt-button type="primary" @click="editShippingAddress"
+        >收货地址</mt-button
+      >
+      <mt-button type="danger" @click="loginOut">退出登录</mt-button>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: "User",
-  inject: ['reload'],
+  inject: ["reload"],
   data() {
     return {
-      avatar: require("@/assets/avatar.png")
+      avatar: require("@/assets/avatar.png"),
     };
   },
   methods: {
     loginOut() {
       this.$store.commit("loginOut", {});
     },
-  }
+    editShippingAddress() {
+      this.$router.push("/ShippingAddress");
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -64,7 +76,6 @@ export default {
     color: #ffffff;
     font-size: 24px;
   }
-
 }
 
 .mint-button {

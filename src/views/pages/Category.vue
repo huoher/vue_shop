@@ -3,24 +3,30 @@
     <div class="menu">
       <div class="menu-left">
         <ul>
-          <li class="menu-item"
-              @click="clickList(index)"
-              v-for="(menu,index) in menus"
-              :key="index"
-              :class="{current: index === currentIndex}">
+          <li
+            class="menu-item"
+            @click="clickList(index)"
+            v-for="(menu, index) in menus"
+            :key="index"
+            :class="{ current: index === currentIndex }"
+          >
             <p class="text">{{ menu.name }}</p>
           </li>
         </ul>
       </div>
       <div class="menu-right" ref="itemList">
         <h4 class="cate-title">{{ menus[currentIndex].name }}</h4>
-        <div style="display: flex;flex-wrap: wrap">
-          <div class="cate" v-for="(menu, index1) in menus[currentIndex].children" :key="index1" >
+        <div style="display: flex; flex-wrap: wrap">
+          <div
+            class="cate"
+            v-for="(menu, index1) in menus[currentIndex].children"
+            :key="index1"
+          >
             <div class="cate-item">
               <div>
                 <a href="#" class="cate-item-wrapper">
                   <div class="cate-item-img">
-                    <img :src="menu.image" alt="">
+                    <img :src="menu.image" alt="" />
                   </div>
                 </a>
                 <p>{{ menu.name }}</p>
@@ -43,62 +49,68 @@ export default {
           children: [
             {
               name: "夹克",
-              image: require("@/assets/menu/5ac4780cN6087feb5.jpg")
+              image: require("@/assets/menu/5ac4780cN6087feb5.jpg"),
             },
             {
               name: "T恤",
-              image: require("@/assets/menu/5ac47812N52823c3e.jpg")
+              image: require("@/assets/menu/5ac47812N52823c3e.jpg"),
             },
             {
               name: "衬衫",
-              image: require("@/assets/menu/5ac47821N48c68336.jpg")
+              image: require("@/assets/menu/5ac47821N48c68336.jpg"),
             },
             {
               name: "卫衣",
-              image: require("@/assets/menu/5ac4782aN695a7262.jpg")
-            }
-          ]
+              image: require("@/assets/menu/5ac4782aN695a7262.jpg"),
+            },
+          ],
         },
         {
           name: "女装",
           children: [
             {
               name: "连衣裙",
-              image: require("@/assets/menu/5a128473N0e516a0c.jpg")
+              image: require("@/assets/menu/5a128473N0e516a0c.jpg"),
             },
             {
               name: "半身裙",
-              image: require("@/assets/menu/5a12846cNf3df9f87.jpg")
-            }
-          ]
+              image: require("@/assets/menu/5a12846cNf3df9f87.jpg"),
+            },
+          ],
         },
         {
-          name: "运功户外"
+          name: "运功户外",
+          children: [
+            {
+              name: "运动鞋",
+              image: require("@/assets/menu/5a1fb5e7N12a676b6.jpg"),
+            },
+          ],
         },
         {
-          name: "酒水饮料"
+          name: "酒水饮料",
         },
         {
-          name: "家具家装"
+          name: "家具家装",
         },
         {
-          name: "宠物生活"
+          name: "宠物生活",
         },
         {
-          name: "玩具乐器"
+          name: "玩具乐器",
         },
         {
-          name: "医药保健"
-        }
+          name: "医药保健",
+        },
       ],
-      currentIndex: 0
+      currentIndex: 0,
     };
   },
   methods: {
     clickList(index) {
       this.currentIndex = index;
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -170,7 +182,6 @@ li {
         flex-flow: row wrap;
 
         div {
-
           .cate-item-wrapper {
             .cate-item-img {
               width: 100%;
@@ -192,5 +203,4 @@ li {
     }
   }
 }
-
 </style>
