@@ -19,6 +19,7 @@
 </template>
 <script>
 import { Toast } from "mint-ui";
+import { login } from "@/api";
 
 export default {
   name: "Login",
@@ -26,8 +27,8 @@ export default {
     return {
       loginForm: {
         username: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   methods: {
@@ -35,10 +36,16 @@ export default {
       if (!this.loginForm.username || !this.loginForm.password) {
         Toast("请输入账号和密码 ");
       }
-      this.$store.commit("setUserInfo", this.loginForm);
-      this.$router.push("/user")
-    }
-  }
+      login(this.loginForm).then((res) => {
+        if (res.search("success") >= 0) {
+          this.$store.commit("setUserInfo", this.loginForm);
+          this.$router.push("/user");
+        } else {
+          Toast("用户名或密码错误 ");
+        }
+      });
+    },
+  },
 };
 </script>
 
